@@ -15,6 +15,37 @@ def view_contacts(contacts):
         status = "★" if contact["favorite"] else " "
         print(f"{index}. [{status}] {contact["name"]} - {contact["phone"]} - {contact["email"]}")
 
+    
+def view_edit_options():
+    print("\n--- Options to edit ---")
+    print("1. Edit the contact name")
+    print("2. Edit the contact phone")
+    print("3. Edit the contact email")
+    print("4. Back to menu")
+
+
+def edit_contact(contacts, contact_index):
+    adjusted_contact_index = int(contact_index) - 1
+
+    if adjusted_contact_index >= 0 and adjusted_contact_index < len(contacts):
+        view_edit_options()
+        choice_to_edit = input("\nEnter your choice: ")
+        if choice_to_edit == "1":
+            contacts[adjusted_contact_index]["name"] = input("Enter the new name of contact: ")
+        elif choice_to_edit == "2":
+            contacts[adjusted_contact_index]["phone"] = input("Enter the new phone of contact: ")
+        elif choice_to_edit == "3":
+            contacts[adjusted_contact_index]["email"] = input("Enter the new email of contact: ")
+        elif choice_to_edit == "4":
+            print("\nReturning to menu...")
+            return
+        else:
+            print("\nInvalid choice! Returning to menu...")
+            return
+        print("\nThe contact has been successfully edited!")
+    else:
+        print("\nThe index entered is invalid!")
+
 
 contacts = []
 
@@ -36,6 +67,10 @@ while True:
         add_contact(contacts, contact_name, contact_phone, contact_email)
     elif choice == "2":
         view_contacts(contacts)
+    elif choice == "3":
+        view_contacts(contacts)
+        contact_index = input("\nEnter the index of the contact you want to edit: ")
+        edit_contact(contacts, contact_index)
     elif choice == "6":
         break
 
