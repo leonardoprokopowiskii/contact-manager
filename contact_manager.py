@@ -47,6 +47,19 @@ def edit_contact(contacts, contact_index):
         print("\nThe index entered is invalid!")
 
 
+def toogle_favorite(contacts, contact_index):
+    adjusted_contact_index = int(contact_index) - 1
+    if adjusted_contact_index >= 0 and adjusted_contact_index < len(contacts):
+        if contacts[adjusted_contact_index]["favorite"]:
+            contacts[adjusted_contact_index]["favorite"] = False
+            print("The contact was unmarked favorite successfully!")
+        else:
+            contacts[adjusted_contact_index]["favorite"] = True
+            print("The contact was marked favorite successfully!")
+    else:
+        print("\nThe index entered is invalid!")
+
+
 contacts = []
 
 while True:
@@ -71,6 +84,10 @@ while True:
         view_contacts(contacts)
         contact_index = input("\nEnter the index of the contact you want to edit: ")
         edit_contact(contacts, contact_index)
+    elif choice == "4":
+        view_contacts(contacts)
+        contact_index = input("\nEnter the index of the contact you want to mark/unmark as a favorite: ")
+        toogle_favorite(contacts, contact_index)
     elif choice == "6":
         break
 
