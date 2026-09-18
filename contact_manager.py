@@ -71,6 +71,15 @@ def view_favorite_contacts(contacts):
         print("No favorite contacts found!")
 
 
+def remove_contact(contacts, contact_index):
+    adjusted_contact_index = int(contact_index) - 1
+    if adjusted_contact_index >= 0 and adjusted_contact_index < len(contacts):
+        contacts.remove(contacts[adjusted_contact_index])
+        print("Contact successfully removed!")
+    else:
+        print("The index entered is invalid!")
+
+
 contacts = []
 
 while True:
@@ -80,7 +89,8 @@ while True:
     print("3. Edit a contact")
     print("4. Mark or unmark contact as favorite")
     print("5. View contacts marked as favorite")
-    print("6. Exit")
+    print("6. Remove a contact")
+    print("7. Exit")
 
     choice = input("\nEnter your choice: ")
 
@@ -102,6 +112,12 @@ while True:
     elif choice == "5":
         view_favorite_contacts(contacts)
     elif choice == "6":
+        view_contacts(contacts)
+        contact_index = input("\nEnter the index of the contact you want to remove: ")
+        remove_contact(contacts, contact_index)
+    elif choice == "7":
         break
+    else:
+        print("\nInvalid choice! Please try again.")
 
 print("Finish program!")
