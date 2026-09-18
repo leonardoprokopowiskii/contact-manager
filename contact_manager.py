@@ -8,6 +8,14 @@ def add_contact(contacts, contact_name, contact_phone, contact_email):
     contacts.append(contact)
     print(f"\nContact '{contact_name}' added successfully!")
 
+
+def view_contacts(contacts):
+    print("\n--- List of contacts ---")
+    for index, contact in enumerate(contacts, start=1):
+        status = "★" if contact["favorite"] else " "
+        print(f"{index}. [{status}] {contact["name"]} - {contact["phone"]} - {contact["email"]}")
+
+
 contacts = []
 
 while True:
@@ -26,6 +34,8 @@ while True:
         contact_phone = input("Enter the phone of contact: ")
         contact_email = input("Enter the email of contact: ")
         add_contact(contacts, contact_name, contact_phone, contact_email)
+    elif choice == "2":
+        view_contacts(contacts)
     elif choice == "6":
         break
 
