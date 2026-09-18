@@ -47,7 +47,7 @@ def edit_contact(contacts, contact_index):
         print("\nThe index entered is invalid!")
 
 
-def toogle_favorite(contacts, contact_index):
+def toggle_favorite(contacts, contact_index):
     adjusted_contact_index = int(contact_index) - 1
     if adjusted_contact_index >= 0 and adjusted_contact_index < len(contacts):
         if contacts[adjusted_contact_index]["favorite"]:
@@ -58,6 +58,17 @@ def toogle_favorite(contacts, contact_index):
             print("The contact was marked favorite successfully!")
     else:
         print("\nThe index entered is invalid!")
+
+
+def view_favorite_contacts(contacts):
+    favorite_count = 0
+    print("\n--- Favorite contacts list ---")
+    for index, contact in enumerate(contacts, start=1):
+        if contact["favorite"]:
+            favorite_count += 1
+            print(f"{index}. [★] {contact["name"]} - {contact["phone"]} - {contact["email"]}")
+    if favorite_count == 0:
+        print("No favorite contacts found!")
 
 
 contacts = []
@@ -87,7 +98,9 @@ while True:
     elif choice == "4":
         view_contacts(contacts)
         contact_index = input("\nEnter the index of the contact you want to mark/unmark as a favorite: ")
-        toogle_favorite(contacts, contact_index)
+        toggle_favorite(contacts, contact_index)
+    elif choice == "5":
+        view_favorite_contacts(contacts)
     elif choice == "6":
         break
 
